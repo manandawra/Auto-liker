@@ -1,0 +1,85 @@
+from selenium import webdriver
+import time
+import requests
+import random
+from bs4 import BeautifulSoup as soup
+from selenium.webdriver.common.keys import Keys
+# url="https://www.flipkart.com/arrow-sport-men-checkered-casual-maroon-dark-blue-shirt/p/itmfbbhqgb3ezzef?pid=SHTFBPHJFRUHAURV&lid=LSTSHTFBPHJFRUHAURVTOOOHY&marketplace=FLIPKART&srno=b_2_73&otracker=clp_omu_Top%2BFashion%2BOffers_7_4.dealCard.OMU_fashion-big-shopping-days-july19-store_fashion-big-shopping-days-july19-store_F79AVPCVJ8B4_4&otracker1=clp_omu_PINNED_neo%2Fmerchandising_Top%2BFashion%2BOffers_NA_dealCard_cc_7_NA_view-all_4&fm=neo%2Fmerchandising&iid=9a9fca22-44a6-4aee-a79f-998816997ef9.SHTFBPHJFRUHAURV.SEARCH&ppt=browse&ppn=browse&ssid=mpcc3bgl340000001563387976316https://www.flipkart.com/arrow-sport-men-checkered-casual-maroon-dark-blue-shirt/p/itmfbbhqgb3ezzef?pid=SHTFBPHJFRUHAURV&lid=LSTSHTFBPHJFRUHAURVTOOOHY&marketplace=FLIPKART&srno=b_2_73&otracker=clp_omu_Top%2BFashion%2BOffers_7_4.dealCard.OMU_fashion-big-shopping-days-july19-store_fashion-big-shopping-days-july19-store_F79AVPCVJ8B4_4&otracker1=clp_omu_PINNED_neo%2Fmerchandising_Top%2BFashion%2BOffers_NA_dealCard_cc_7_NA_view-all_4&fm=neo%2Fmerchandising&iid=9a9fca22-44a6-4aee-a79f-998816997ef9.SHTFBPHJFRUHAURV.SEARCH&ppt=browse&ppn=browse&ssid=mpcc3bgl340000001563387976316"
+driver=webdriver.Chrome(executable_path="C:\\Users\\dell\\Downloads\\chromedriver.exe")
+UserAgent=[
+        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+]
+def liker():
+    time.sleep(1)
+    Like=driver.find_element_by_xpath('''/html/body/div[5]/div[2]/div/article/div[3]/section[1]/span[1]/button''')
+    Like.click()
+    time.sleep(2)
+    Comment=driver.find_element_by_xpath('''/html/body/div[5]/div[2]/div/article/div[3]/section[1]/span[2]/button''')
+    Comment.click()
+    time.sleep(2)
+    TextField=driver.find_element_by_class_name("Ypffh")
+    TextField=driver.find_element_by_tag_name("textarea")
+    time.sleep(2)
+    TextField.send_keys("well done")
+    time.sleep(2)
+    Post=driver.find_element_by_xpath("/html/body/div[5]/div[2]/div/article/div[3]/section[3]/div/form/button")
+    print(Post)
+    time.sleep(2)
+    Post.click()
+    return "Image Recived Like and comments"
+header={"User-Agent":UserAgent[0]}
+driver.get("https://www.instagram.com/accounts/login/?source=auth_switcher")
+time.sleep(5)
+
+
+username=driver.find_element_by_xpath('''/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[1]/div/label/input''')
+
+
+username.send_keys("officialsondhi12")
+time.sleep(2)
+password=driver.find_element_by_xpath('''/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[2]/div/label/input''')
+
+
+password.send_keys("officialsondhi123")
+
+
+button=driver.find_element_by_xpath('''/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[3]/button''')
+button.click()
+time.sleep(4)
+try:
+    not_now=driver.find_element_by_xpath('''/html/body/div[1]/section/main/div/div/div/div/button''')
+    not_now.click()
+    time.sleep(2)
+except:
+    print("Verification not occured")
+    send_security_code=driver.find_element_by_xpath('''//*[@id="react-root"]/section/div/div/div[3]/form/span/button''')
+    send_security_code.click()
+    time.sleep(2)
+time.sleep(4)
+cross=driver.find_element_by_xpath('''/html/body/div[4]/div/div/div/div[3]/button[2]''')
+cross.click()
+time.sleep(1)
+SearchBar=driver.find_element_by_xpath('''/html/body/div[1]/section/nav/div[2]/div/div/div[2]/input''')
+
+
+SearchBar.send_keys("manan_dawra")
+
+
+time.sleep(2)
+user=driver.find_element_by_xpath('''/html/body/div[1]/section/nav/div[2]/div/div/div[2]/div[4]/div/a[1]/div''')
+time.sleep(2)
+user.click() 
+time.sleep(2)   
+FirstPic=driver.find_element_by_class_name("eLAPa")
+FirstPic.click()
+time.sleep(4)
+liker()
+
+for i in range(10):
+    try:
+        next=driver.find_element_by_xpath("/html/body/div[5]/div[1]/div/div/a")
+        next.click()
+        time.sleep(4)
+        liker()
+    except:
+        print("Error in image")
